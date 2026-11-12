@@ -50,6 +50,11 @@ inline bool start(void *(*entry)(void *), void *arg, size_t stack_size, const ch
 	OrbisPthread thread;
 	const int rc = scePthreadCreate(&thread, &attr, entry, arg, name);
 	scePthreadAttrDestroy(&attr);
+	// Nobody joins our threads (like std::thread::detach on desktop): without
+	// this every finished thread keeps its stack and kernel slot, and each
+	// video leaks the decode, audio, download and tracker threads until the
+	// app runs out of memory a few episodes in.
+	if (rc == 0) scePthreadDetach(thread);
 	return rc == 0;
 }
 

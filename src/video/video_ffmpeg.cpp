@@ -538,7 +538,11 @@ private:
 				threads::Lock lock(mutex_);
 				reader_ = ByteSource::create(url_, headers_);
 			}
-			if (abort_) return;
+			if (abort_) {
+				avformat_free_context(fmt);
+				free_io(nullptr);
+				return;
+			}
 			if (!reader_->open()) {
 				if (!abort_) fail(reader_->error().empty() ? "Couldn't open the stream" : reader_->error());
 				avformat_free_context(fmt);

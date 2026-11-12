@@ -7,6 +7,17 @@ jailbroken PlayStation 4 consoles. It's designed for the TV and the
 DualShock 4, and plays the streams from your Stremio add-ons on the console
 itself.
 
+> **This is a modified version of
+> [Navinas3460/Stremio-PS4](https://github.com/Navinas3460/Stremio-PS4)**,
+> the original project by Navinas3460, redistributed under its GPL-3.0
+> license. All credit for the app goes to the original author.
+>
+> Changes in this version:
+>
+> - **1.1.1 (2026-11-12):** fixes the app crashing after two or three
+>   episodes in a row. Finished threads were never released on the PS4, so
+>   every video leaked memory until the app ran out of it.
+
 ## Features
 
 - **Sign in with a QR code:** scan it with a phone that's logged in to
